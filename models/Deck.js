@@ -16,8 +16,6 @@ Deck.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    // Foreign key to the user that created the deck
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
