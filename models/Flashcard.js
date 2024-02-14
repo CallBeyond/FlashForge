@@ -3,7 +3,6 @@ const sequelize = require('../config/connection');
 
 class Flashcard extends Model {}
 
-// Initialize the Flashcard model with attributes and options
 Flashcard.init(
   {
     id: {
