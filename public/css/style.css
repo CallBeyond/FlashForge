@@ -1,0 +1,81 @@
+
+/* Body */
+body {
+    background-color: #e0d3af; /* Beige background */
+    font-family: 'Garamond', serif; /* Medieval-inspired font */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #8b4513; /* Brown header */
+    color: #fff; /* White text */
+    padding: 20px;
+}
+
+/* Navigation Menu */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff; /* White text */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Gold on hover */
+}
+
+/* Main Content */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.card {
+    background-color: #fff; /* White cards */
+    border: 1px solid #8b4513; /* Brown border */
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    color: #8b4513; /* Brown heading */
+}
+
+.card p {
+    color: #333; /* Dark text */
+}
+
+/* Buttons */
+.button {
+    background-color: #8b4513; /* Brown button */
+    color: #fff; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #cd853f; /* Lighter brown on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #8b4513; /* Brown footer */
+    color: #fff; /* White text */
+    padding: 20px;
+    text-align: center;
+}
