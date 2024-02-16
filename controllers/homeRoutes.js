@@ -18,7 +18,7 @@ router.get('/login', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/flashcardedit', withAuth, async (req, res) => {
+router.get('/flashcardedit', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         console.log('flashcard edit route is working')
@@ -27,7 +27,7 @@ router.get('/flashcardedit', withAuth, async (req, res) => {
     }
 });
 
-router.get('/flashcarddisplay', withAuth, async (req, res) => {
+router.get('/flashcarddisplay', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         console.log('flashcard display route is working')
@@ -36,7 +36,7 @@ router.get('/flashcarddisplay', withAuth, async (req, res) => {
     }
 });
 
-router.get('/flashcarddeck', withAuth, async (req, res) => {
+router.get('/flashcarddeck', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         console.log('flashcard deck route is working')
