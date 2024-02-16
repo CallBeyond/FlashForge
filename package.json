@@ -10,7 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-session-sequelize": "^7.1.7",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
     "inquirer": "^9.2.14",
-    "nodemailer": "^6.9.9"
+    "mysql2": "^3.9.1",
+    "nodemailer": "^6.9.9",
+    "sequelize": "^6.37.0"
   }
 }
