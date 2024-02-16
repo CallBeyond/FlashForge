@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS flashcards_db;
-CREATE DATABASE flashcards_db;
+DROP DATABASE IF EXISTS flashforge_db;
+CREATE DATABASE flashforge_db;
