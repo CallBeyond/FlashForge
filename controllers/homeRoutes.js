@@ -3,7 +3,7 @@ const Deck = require('../models/Deck');
 const User = require('../models/User');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
       // Get all decks
       const decksData = await Deck.findAll({
@@ -23,71 +23,94 @@ router.get('/', async (req, res) => {
     }
 });
 
-
-
-router.get('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        res.render('login');
-        console.log('login page route is working')
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        // Query the user based on the provided username and password
-        const user = await User.findOne({
-            where: {
-                email,
-                password,
-            },
-        });
-
-        if (!user) {
-            // User not found or invalid credentials
-            return res.status(400).json({ message: 'Invalid username or password' });
-        }
-
-        req.session.user_id = user.id;
+      const userData = await User.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user_id = userData.id;
         req.session.logged_in = true;
-
-        // Redirect to the homepage or any other authenticated route
-        res.redirect('/');
+  
+        res.status(200).json(userData);
+      });
     } catch (err) {
-        res.status(500).json(err);
+      res.status(400).json(err);
     }
-});
-
-// Use withAuth middleware to prevent access to route
-router.get('/flashcardedit', async (req, res) => {
-    try {
-        // Find the logged in user based on the session ID
-        console.log('flashcard edit route is working')
-    } catch (err) {
-        res.status(500).json(err);
-    }    
-});    
+  });
 
 
-router.get('/flashcarddisplay', async (req, res) => {
-    try {
-        // Find the logged in user based on the session ID
-        console.log('flashcard display route is working')
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
 
-router.get('/flashcarddeck', async (req, res) => {
-    try {
-        // Find the logged in user based on the session ID
-        console.log('flashcard deck route is working')
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-module.exports = router;
+  
+  router.post('/login', async (req, res) => {
+      try {
+          const userData = await User.findOne({ where: { email: req.body.email } });
+          
+          if (!userData) {
+              res
+              .status(400)
+              .json({ message: 'Incorrect email or password, please try again' });
+              return;
+            }
+            
+            const validPassword = await userData.checkPassword(req.body.password);
+            
+            if (!validPassword) {
+                res
+                .status(400)
+                .json({ message: 'Incorrect email or password, please try again' });
+                return;
+            }
+            
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.logged_in = true;
+                
+                res.json({ user: userData, message: 'You are now logged in!' });
+            });
+            
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    });
+    
+    // Use withAuth middleware to prevent access to route
+    router.get('/flashcardedit', withAuth, async (req, res) => {
+        try {
+            // Find the logged in user based on the session ID
+            console.log('flashcard edit route is working')
+        } catch (err) {
+            res.status(500).json(err);
+        }    
+    });    
+    
+    
+    router.get('/flashcarddisplay', withAuth, async (req, res) => {
+        try {
+            // Find the logged in user based on the session ID
+            console.log('flashcard display route is working')
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    });
+    
+    router.get('/flashcarddeck', withAuth, async (req, res) => {
+        try {
+            // Find the logged in user based on the session ID
+            console.log('flashcard deck route is working')
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    });
+    
+    router.get('/login', (req, res) => {
+        // If the user is already logged in, redirect the request to another route
+        if (req.session.logged_in) {
+          res.redirect('/');
+          return;
+        }
+      
+        res.render('login');
+      });
+      
+    module.exports = router;
+    
