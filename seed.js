@@ -1,5 +1,6 @@
 // Import necessary modules
 const User = require('./models/User');
+const sequelize = require('./config/connection');
 
 const userData = [
     {
@@ -38,9 +39,13 @@ const userData = [
 const seedDatabase = async () => {
     try {
         // Use Sequelize's create method to insert user data into the database
-        await User.bulkCreate(userData);
+        await User.bulkCreate(userData, {
+            individualHooks: true,
+            returning: true
+        });
 
         console.log('Database seeded successfully');
+        process.exit(0);
     } catch (err) {
         console.error('Error seeding database:', err);
     }
