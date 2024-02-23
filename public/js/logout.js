@@ -10,6 +10,11 @@ const logout = async () => {
       alert('Failed to log out.');
     }
   };
+
+  router.post('/logout', (req, res) => {
+    req.logout(); 
+    res.redirect('/');
+});
   
   document.querySelector('#logout').addEventListener('click', logout);
   
