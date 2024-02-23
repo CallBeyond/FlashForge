@@ -1,27 +1,45 @@
 const router = require('express').Router();
 const Deck = require('../models/Deck');
 const User = require('../models/User');
+const Flashcard = require('../models/Flashcard');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
-  try {
-    // Check if the user is logged in
-    if (!req.session.logged_in) {
-      // If not logged in, redirect to the login page
-      return res.redirect('/login');
-    }
 
-    // Get all decks
-    const decksData = await Deck.findAll({
-      attributes: ['id', 'name'],
+// <---------Decks--------->
+router.get('/', withAuth, async (req, res) => {
+    try {
+      // Get all decks
+      const decksData = await Deck.findAll({
+        attributes: ['id', 'name'],
+      });
+  
+      // Serialize data
+      const decks = decksData.map((deck) => deck.get({ plain: true }));
+  console.log(decks)
+      // Pass serialized data and session flag into template
+      res.render('homepage', { 
+        decks, 
+        logged_in: req.session.logged_in 
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
+// <---------Flashcards--------->
+router.get('/flashcards', withAuth, async (req, res) => {
+  try {
+    // Get all flashcards
+    const flashcardsInfo = await Flashcard.findAll({
+      attributes: ['id','front', 'back'],
     });
 
     // Serialize data
-    const decks = decksData.map((deck) => deck.get({ plain: true }));
-
+    const flashcards = flashcardsInfo.map((flashcards) => flashcards.get({ plain: true }));
+console.log(flashcards)
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      decks, 
+    res.render('flashcards', { 
+      flashcards, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
