@@ -1,10 +1,10 @@
-const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Flashcard extends Model {}
 
 Flashcard.init(
-  {
+  {const { Model, DataTypes } = require('sequelize');
+
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
