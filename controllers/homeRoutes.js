@@ -12,7 +12,7 @@ router.get('/', withAuth, async (req, res) => {
   
       // Serialize data
       const decks = decksData.map((deck) => deck.get({ plain: true }));
-  
+  console.log(decks)
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         decks, 
