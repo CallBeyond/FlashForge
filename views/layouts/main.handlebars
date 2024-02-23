@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registry</title>
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+     <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
-  <header class="display-flex justify-space-between align-center p-2">
-    <h1>
-      User Registry
-    </h1>
-  </header>
-  <main class="container container-fluid mt-5">
-    {{{ body }}}
-  </main>
-  <footer>
-      
-  </footer>
+    <header>
+        <h1>{{pageTitle}}</h1>
+        {{#if currentUser}}
+            <p>Welcome, {{currentUser.username}}!</p>
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        {{else}}
+            <a href="/logout">Logout</a>
+        {{/if}}
+    </header>
+    <main>
+        {{{body}}}
+    </main>
 </body>
-
 </html>
