@@ -8,6 +8,10 @@ const withAuth = require('../utils/auth');
 // <---------Decks--------->
 router.get('/', withAuth, async (req, res) => {
     try {
+      if (!req.session.logged_in) {
+        // If not logged in, redirect to the login page
+        return res.redirect('/login');
+      }
       // Get all decks
       const decksData = await Deck.findAll({
         attributes: ['id', 'name'],
