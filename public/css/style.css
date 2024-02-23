@@ -1,16 +1,17 @@
 
+
 /* Body */
 body {
-    background-color: #e0d3af; /* Beige background */
-    font-family: 'Garamond', serif; /* Medieval-inspired font */
+    background-color: #e0d3af; 
+    font-family: 'Garamond', serif; 
     margin: 0;
     padding: 0;
 }
 
 /* Header */
 header {
-    background-color: #8b4513; /* Brown header */
-    color: #fff; /* White text */
+    background-color: #8b4513; 
+    color: #fff; 
     padding: 20px;
 }
 
@@ -27,13 +28,13 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff; /* White text */
+    color: #fff; 
     text-decoration: none;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: #ffd700; /* Gold on hover */
+    color: #ffd700; 
 }
 
 /* Main Content */
@@ -43,25 +44,49 @@ nav ul li a:hover {
 }
 
 .card {
-    background-color: #fff; /* White cards */
-    border: 1px solid #8b4513; /* Brown border */
+    background-color: #fff; 
+    border: 1px solid #8b4513; 
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
 }
 
 .card h2 {
-    color: #8b4513; /* Brown heading */
+    color: #8b4513; 
 }
 
 .card p {
-    color: #333; /* Dark text */
+    color: #333; 
 }
 
 /* Buttons */
+
+/* CSS */
+.button-12 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-12:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
 .button {
-    background-color: #8b4513; /* Brown button */
-    color: #fff; /* White text */
+    
+    background-color: #8b4513; 
+    color: #fff; 
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -69,13 +94,60 @@ nav ul li a:hover {
 }
 
 .button:hover {
-    background-color: #cd853f; /* Lighter brown on hover */
+    background-color: #cd853f; 
 }
 
 /* Footer */
 footer {
-    background-color: #8b4513; /* Brown footer */
-    color: #fff; /* White text */
+    background-color: #8b4513; 
+    color: #fff; 
     padding: 20px;
     text-align: center;
 }
+
+/* New Flashcard Container */
+.flashcard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.flashcard {
+    width: 200px;
+    height: 150px;
+    background-color: #fff; 
+    border: 1px solid #8b4513; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.flashcard:hover {
+    transform: translateY(-5px);
+}
+
+.flashcard-front,
+.flashcard-back {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.flashcard-front {
+    background-color: #fff; 
+}
+
+.flashcard-back {
+    background-color: #e0e0e0;
+}
+
