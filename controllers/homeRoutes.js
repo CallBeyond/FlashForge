@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const Deck = require('../models/Deck');
 const User = require('../models/User');
+const Flashcard = require('../models/Flashcard');
 const withAuth = require('../utils/auth');
 
+
+// <---------Decks--------->
 router.get('/', withAuth, async (req, res) => {
     try {
       // Get all decks
@@ -12,7 +15,7 @@ router.get('/', withAuth, async (req, res) => {
   
       // Serialize data
       const decks = decksData.map((deck) => deck.get({ plain: true }));
-  
+  console.log(decks)
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         decks, 
@@ -21,6 +24,27 @@ router.get('/', withAuth, async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
+});
+
+// <---------Flashcards--------->
+router.get('/flashcards', withAuth, async (req, res) => {
+  try {
+    // Get all flashcards
+    const flashcardsInfo = await Flashcard.findAll({
+      attributes: ['id','front', 'back'],
+    });
+
+    // Serialize data
+    const flashcards = flashcardsInfo.map((flashcards) => flashcards.get({ plain: true }));
+console.log(flashcards)
+    // Pass serialized data and session flag into template
+    res.render('flashcards', { 
+      flashcards, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // router.post('/', async (req, res) => {
