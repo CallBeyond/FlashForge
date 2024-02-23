@@ -40,7 +40,5 @@ sequelize.sync({ force: false }).then(() => {
 
 // Path: controllers/api/index.js
 
-
-  
-  res.render('flashcard-container', data);
-});
+ res.render('flashcard-container', data);
+}); 
