@@ -3,7 +3,7 @@
 
 
 ## Description
-For this project me and my group worked together to create a site that allows the user to input, save and view a flashcard.
+For this project we worked together to create a site that allows the user to input, save and view a flashcard.
 We used express.js for the functionality and Handlerbars with CSS styling to view the application. The application is deployed using Heroku.
 
 
