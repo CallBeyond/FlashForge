@@ -38,7 +38,7 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
 
-// Path: controllers/api/index.js
 
- res.render('flashcard-container', data);
-}); 
+// app.get('/', (req, res) => {
+//   res.render('yourTemplate', { title: 'Flash Forge Cards' });
+// });
