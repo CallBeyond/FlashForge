@@ -38,7 +38,6 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
 
-
-// app.get('/', (req, res) => {
-//   res.render('yourTemplate', { title: 'Flash Forge Cards' });
-// });
+app.use((req, res, next) => {
+  res.status(404).send('404: Page not found');
+});
