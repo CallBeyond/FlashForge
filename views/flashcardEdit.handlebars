@@ -1,0 +1,25 @@
+<!-- flashcardEdit.handlebars -->
+
+{{#if deck}}
+<div class="row align-center mb-5">
+  <div class="col-md-6">
+    <h2>Edit Deck: {{deck.name}}</h2>
+  </div>
+</div>
+
+<div class="flashcard-container">
+  {{#each deck.flashcards as |flashcard|}}
+  <div class="flashcard">
+    <div class="front">
+      <h2>Question</h2>
+      <p>{{flashcard.front}}</p>
+    </div>
+    <div class="back">
+      <h2>Answer</h2>
+      <p>{{flashcard.back}}</p>
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+
