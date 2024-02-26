@@ -3,8 +3,8 @@
 .flashcard {
     width: 400px; 
     height: 250px; 
-    background-color: #f7f7f7; 
-    border: 2px solid #141414; 
+    background-color: #9d9a9a; 
+    border: 2px solid #000000; 
     border-radius: 25px; 
     box-shadow: 0 4px 8px rgba(129, 107, 107, 0.1); 
     padding: 30px; 
@@ -12,6 +12,7 @@
     overflow: hidden; 
     position: relative; 
     transition: transform 0.3s ease-in-out; 
+    font-family: 'MedievalFont', serif;
 }
 
 .flashcard h3 {
@@ -50,4 +51,5 @@
 .flashcard:hover .flashcard-back {
     transform: perspective(1000px) rotateY(0deg); 
 }
-};
+}
+
