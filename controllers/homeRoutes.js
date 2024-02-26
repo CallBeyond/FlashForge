@@ -31,36 +31,66 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // <---------Flashcards--------->
-router.get('/flashcards', withAuth, async (req, res) => {
+// router.get('/deck/:id', withAuth, async (req, res) => {
+//   try {
+//     if (!req.session.logged_in) {
+//       // If not logged in, redirect to the login page
+//       return res.redirect('/login');
+//     }
+//     // Get all decks
+//     const decksData = await Deck.findAll({
+//       attributes: ['id', 'name'],
+//     });
+
+//     // Serialize data
+//     const decks = decksData.map((deck) => deck.get({ plain: true }));
+// console.log(decks)
+//     // Pass serialized data and session flag into template
+//     res.render('homepage', { 
+//       decks, 
+//       logged_in: req.session.logged_in 
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// Route to render the deck editing page
+router.get('/deck/:id', withAuth, async (req, res) => {
   try {
-    // Get all flashcards
-    const flashcardsInfo = await Flashcard.findAll({
-      attributes: ['id','front', 'back'],
+    // Find the deck by ID
+    const deck = await Deck.findByPk(req.params.id, {
+      include: [Flashcard] // Include associated flashcards
     });
 
-    // Serialize data
-    const flashcards = flashcardsInfo.map((flashcards) => flashcards.get({ plain: true }));
-console.log(flashcards)
-    // Pass serialized data and session flag into template
-    res.render('flashcards', { 
-      flashcards, 
-      logged_in: req.session.logged_in 
-    });
+    if (!deck) {
+      res.status(404).json({ message: 'Deck not found' });
+      return;
+    }
+
+    // Serialize the deck data
+    const serializedDeck = deck.get({ plain: true });
+
+    // Render the deck editing page template and pass serialized deck data
+    res.render('flashcardEdit', { deck: serializedDeck, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+
+
+
    
-    // Use withAuth middleware to prevent access to route
-    router.get('/flashcardedit', withAuth, async (req, res) => {
-        try {
-            // Find the logged in user based on the session ID
-            console.log('flashcard edit route is working')
-        } catch (err) {
-            res.status(500).json(err);
-        }    
-    });    
+    // // Use withAuth middleware to prevent access to route
+    // router.get('/flashcardedit', withAuth, async (req, res) => {
+    //     try {
+    //         // Find the logged in user based on the session ID
+    //         console.log('flashcard edit route is working')
+    //     } catch (err) {
+    //         res.status(500).json(err);
+    //     }    
+    // });    
     
     
     router.get('/flashcarddisplay', withAuth, async (req, res) => {
