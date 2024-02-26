@@ -1,54 +1,52 @@
 
-/* Flashcard Styling */
 
 .flashcard {
-    width: 400px; /* Adjust width for wider flashcards */
-    height: 250px; /* Adjust height as needed */
-    background-color: #f7f7f7; /* Light gray background */
-    border: 2px solid #4caf50; /* Green border */
-    border-radius: 10px; /* Rounded corners */
+    width: 400px; 
+    height: 250px; 
+    background-color: #f7f7f7; 
+    border: 2px solid #4caf50; 
+    border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    padding: 30px; /* Increased padding for more content */
-    margin: 20px; /* Margin around the flashcard */
-    overflow: hidden; /* Hide overflow content */
-    position: relative; /* Positioning for flip animation */
-    transition: transform 0.3s ease-in-out; /* Smooth transition for flip animation */
+    padding: 30px; 
+    margin: 20px; 
+    overflow: hidden; 
+    position: relative; 
+    transition: transform 0.3s ease-in-out; 
 }
 
 .flashcard h3 {
-    color: #4caf50; /* Green text color for headings */
-    margin-top: 0; /* Remove top margin for headings */
+    color: #4caf50; 
+    margin-top: 0; 
 }
 
 .flashcard p {
-    color: #333; /* Dark text color */
+    color: #333; 
 }
 
 .flashcard-front, .flashcard-back {
-    position: absolute; /* Positioning for flip animation */
-    top: 0; /* Align to the top of the flashcard */
-    left: 0; /* Align to the left of the flashcard */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    backface-visibility: hidden; /* Hide the backface of the flashcard */
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden;
 }
 
 .flashcard-front {
-    transform: perspective(1000px) rotateY(0deg); /* Initial state (front facing) */
-}
+    transform: perspective(1000px) rotateY(0deg); 
 
 .flashcard-back {
-    transform: perspective(1000px) rotateY(180deg); /* Initial state (back facing, hidden) */
+    transform: perspective(1000px) rotateY(180deg);
 }
 
 .flashcard:hover {
-    transform: rotateY(180deg); /* Flip to back side on hover */
+    transform: rotateY(180deg); 
 }
 
 .flashcard:hover .flashcard-front {
-    transform: perspective(1000px) rotateY(-180deg); /* Flip to back side on hover */
+    transform: perspective(1000px) rotateY(-180deg); 
 }
 
 .flashcard:hover .flashcard-back {
-    transform: perspective(1000px) rotateY(0deg); /* Flip to front side on hover */
+    transform: perspective(1000px) rotateY(0deg); 
 }
