@@ -8,6 +8,10 @@ const withAuth = require('../utils/auth');
 // <---------Decks--------->
 router.get('/', withAuth, async (req, res) => {
     try {
+      if (!req.session.logged_in) {
+        // If not logged in, redirect to the login page
+        return res.redirect('/login');
+      }
       // Get all decks
       const decksData = await Deck.findAll({
         attributes: ['id', 'name'],
@@ -47,56 +51,7 @@ console.log(flashcards)
   }
 });
 
-// router.post('/', async (req, res) => {
-//     try {
-//       const userData = await User.create(req.body);
-  
-//       req.session.save(() => {
-//         req.session.user_id = userData.id;
-//         req.session.logged_in = true;
-  
-//         res.status(200).json(userData);
-//       });
-//     } catch (err) {
-//       res.status(400).json(err);
-//     }
-//   });
-
-
-
-  
-  // router.post('/login', async (req, res) => {
-  //     try {
-  //         const userData = await User.findOne({ where: { email: req.body.email } });
-          
-  //         if (!userData) {
-  //             res
-  //             .status(400)
-  //             .json({ message: 'Incorrect email or password, please try again' });
-  //             return;
-  //           }
-            
-  //           const validPassword = await userData.checkPassword(req.body.password);
-            
-  //           if (!validPassword) {
-  //               res
-  //               .status(400)
-  //               .json({ message: 'Incorrect email or password, please try again' });
-  //               return;
-  //           }
-            
-  //           req.session.save(() => {
-  //               req.session.user_id = userData.id;
-  //               req.session.logged_in = true;
-                
-  //               res.json({ user: userData, message: 'You are now logged in!' });
-  //           });
-            
-  //       } catch (err) {
-  //           res.status(400).json(err);
-  //       }
-  //   });
-    
+   
     // Use withAuth middleware to prevent access to route
     router.get('/flashcardedit', withAuth, async (req, res) => {
         try {
@@ -136,5 +91,17 @@ console.log(flashcards)
         res.render('login');
       });
       
+      router.get('/logout', (req, res) => {
+        req.session.destroy((err) => {
+          if (err) {
+            console.error('Error destroying session:', err);
+            res.status(500).send('Error logging out');
+          } else {
+            // Redirect to the login page after session is destroyed
+            res.redirect('/login');
+          }
+        });
+      });
+
     module.exports = router;
     
