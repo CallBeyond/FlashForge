@@ -60,8 +60,6 @@ nav ul li a:hover {
 }
 
 
-
-
 .button-12 {
   display: flex;
   flex-direction: column;
@@ -109,11 +107,11 @@ footer {
 /* Background Gradient */
 body {
     background: linear-gradient(to bottom, #e54409, #923e1f); 
-    font-family: 'Roboto', sans-serif; \
-    color: #333; /* Default text color */
+    font-family: 'old english text', sans-serif; \
+    color: #333; 
+
 }
 
-/* Header Styling */
 header {
     background-color: #eea929; /
     padding: 20px; 
