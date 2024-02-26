@@ -21,8 +21,13 @@
 
 // module.exports = sequelize;
 
-const Sequelize = require('sequelize');
-require('dotenv').config();
+<<<<<< flashcard-routes
+
+//Below is for local server testing 
+
+// const Sequelize = require('sequelize');
+// require('dotenv').config();
+
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
