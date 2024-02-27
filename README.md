@@ -10,6 +10,8 @@ We used express.js for the functionality and Handlerbars with CSS styling to vie
 ## Usage
 This application allows the user to create a flashcard that they can view and edit. 
 the user is able to log in and view flashcards they have previously made.
+![Flash-Forge-Flashcards](https://github.com/CallBeyond/FlashForge/assets/144382382/48e199d2-c64b-4596-bd54-a288f5e75153)
+
 
 
 ## Features
