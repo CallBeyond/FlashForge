@@ -19,7 +19,7 @@ router.get('/', withAuth, async (req, res) => {
   
       // Serialize data
       const decks = decksData.map((deck) => deck.get({ plain: true }));
-  console.log(decks)
+
       // Pass serialized data and session flag into template
       res.render('homepage', { 
         decks, 
@@ -70,6 +70,7 @@ router.get('/deck/:id', withAuth, async (req, res) => {
 
     // Serialize the deck data
     const serializedDeck = deck.get({ plain: true });
+  
 
     // Render the deck editing page template and pass serialized deck data
     res.render('flashcardEdit', { deck: serializedDeck, logged_in: req.session.logged_in });

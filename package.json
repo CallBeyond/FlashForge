@@ -19,6 +19,6 @@
     "inquirer": "^9.2.14",
     "mysql2": "^3.9.1",
     "nodemailer": "^6.9.9",
-    "sequelize": "^6.37.0"
+    "sequelize": "^6.37.1"
   }
 }

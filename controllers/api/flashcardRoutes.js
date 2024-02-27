@@ -1,19 +1,7 @@
 const router = require('express').Router();
-const { Project } = require('../../models');
+const { Project, Flashcard } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
-    try {
-        const newProject = await Project.create({
-            ...req.body,
-            user_id: req.session.user_id,
-        });
-
-        res.status(200).json(newProject);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
 
 router.delete('/:id', withAuth, async (req, res) => {
     try {
@@ -35,28 +23,23 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
-// Route to handle adding a new flashcard
-router.post('/flashcards', async (req, res) => {
+
+
+
+router.post('/', async (req, res) => {
+
     try {
-        // Extract data from request body
-        const { front, back } = req.body;
+      
+        const { front, back, deckId } = req.body;
+    
+        const newFlashcard = await Flashcard.create({ front, back, deckId});
 
-        console.log('Received request to create flashcard:', { front, back });
-
-        // Create new flashcard record in the database
-        const newFlashcard = await Flashcard.create({ front, back });
-
-        console.log('New flashcard created:', newFlashcard);
-
-        // Respond with the newly created flashcard data
-        res.status(201).json(newFlashcard);
+        res.status(200).json(newFlashcard);
     } catch (error) {
-        console.error('Failed to create flashcard:', error);
+        console.error(error);
         res.status(500).json({ message: 'Failed to add flashcard' });
     }
 });
-
-
 
 
 module.exports = router;
