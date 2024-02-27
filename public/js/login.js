@@ -23,27 +23,35 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// In your client-side JavaScript file
+
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector('#name-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const username = document.querySelector("#name-signup").value.trim();
+  const email = document.querySelector("#email-signup").value.trim();
+  const password = document.querySelector("#password-signup").value.trim();
 
   if (username && email && password) {
-    const response = await fetch('/api/users', {
-      method: 'POST',
+    const response = await fetch("/api/users/signup", {
+      method: "POST",
       body: JSON.stringify({ username, email, password }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      console.log("User created successfully");
+      document.location.replace("/");
     } else {
-      alert(response.statusText);
+      alert("Failed to create user");
     }
   }
 };
+
+document
+  .querySelector(".signup-form")
+  .addEventListener("submit", signupFormHandler);
+
 
 document
   .querySelector('.login-form')
