@@ -34,6 +34,7 @@ Flashcard.init(
     timestamps: true,
     underscored: true,
     modelName: 'flashcard',
+    freezeTableName: true,
   }
 );
 
