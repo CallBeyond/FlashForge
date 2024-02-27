@@ -55,7 +55,7 @@ router.post('/signup', async (req, res) => {
     // Send the email
     const message = "Thank you for joining Flashforge! We hope you have an amazing time using our app. Please let us know if you have any comments of concerns.";
     const options = {
-      from: "your-email@example.com", // Sender address
+      from: "jasonarriaza10+flashforge@gmail.com", // Sender address
       to: email, // Receiver email
       subject: "Test Email", // Subject line
       text: message,
