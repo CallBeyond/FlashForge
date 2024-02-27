@@ -53,7 +53,7 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({ username, email, password });
 
     // Send the email
-    const message = "This is a test email sent from Node.js using Nodemailer!";
+    const message = "Thank you for joining Flashforge! We hope you have an amazing time using our app. Please let us know if you have any comments of concerns.";
     const options = {
       from: "your-email@example.com", // Sender address
       to: email, // Receiver email
