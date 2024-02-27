@@ -35,6 +35,28 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 });
 
+// Route to handle adding a new flashcard
+router.post('/flashcards', async (req, res) => {
+    try {
+        // Extract data from request body
+        const { front, back } = req.body;
+
+        console.log('Received request to create flashcard:', { front, back });
+
+        // Create new flashcard record in the database
+        const newFlashcard = await Flashcard.create({ front, back });
+
+        console.log('New flashcard created:', newFlashcard);
+
+        // Respond with the newly created flashcard data
+        res.status(201).json(newFlashcard);
+    } catch (error) {
+        console.error('Failed to create flashcard:', error);
+        res.status(500).json({ message: 'Failed to add flashcard' });
+    }
+});
+
+
 
 
 module.exports = router;
