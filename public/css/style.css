@@ -108,14 +108,15 @@ footer {
 /* Background Gradient */
 body {
     background: linear-gradient(to bottom, #e54409, #923e1f); 
-    font-family: 'MedievalFont', sans-serif; \
+    font-family: 'MedievalFont', sans-serif; 
     color: #333; 
 
-}
+
+ }
 
 header {
     background-color: #eea929; /
-    padding: 20px; 
+    padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
