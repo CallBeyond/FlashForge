@@ -12,18 +12,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
-/** create reusable sendmail function 
-@params {object} options - mail options (to, subject, text, html)
-@params {function} callback - callback function to handle response
-*/
-const SENDMAIL = async (mailDetails, callback) => {
-    try {
-      const info = await transporter.sendMail(mailDetails)
-      callback(info);
-    } catch (error) {
+/** 
+ * Create reusable sendmail function 
+ * @param {object} options - mail options (to, subject, text, html)
+ * @param {function} callback - callback function to handle response
+ */
+const sendEmail = (options, callback) => {
+  // Logic to send email using Nodemailer
+  transporter.sendMail(options, (error, info) => {
+    if (error) {
       console.log(error);
-    } 
-  };
+    } else {
+      callback(info);
+    }
+  });
+};
 
-  module.exports = SENDMAIL;
+module.exports = sendEmail;
